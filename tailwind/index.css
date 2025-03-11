@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ticket-green: #449d87;
+  --color-background: #fefefe;
+  --color-grey: #eff2f1;
+}
+
+.invalid-input{
+    color: rgb(255, 39, 39);
+    background-color: rgb(233, 169, 169);
+}
