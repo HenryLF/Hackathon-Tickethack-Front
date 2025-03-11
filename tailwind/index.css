@@ -4,9 +4,17 @@
   --color-ticket-green: #449d87;
   --color-background: #fefefe;
   --color-grey: #eff2f1;
+  --color-blue: #00153e;
+  --color-deep-grey: #f5eeee;
 }
 
-.invalid-input{
-    color: rgb(255, 39, 39);
-    background-color: rgb(233, 169, 169);
+.invalid-input {
+  color: rgb(255, 39, 39);
+  background-color: rgb(233, 169, 169);
+}
+
+.green-button {
+  background-color: var(--color-ticket-green);
+  color: var(--color-background);
+  border-radius: var(--radius-xs);
 }

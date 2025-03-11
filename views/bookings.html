@@ -1,24 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tickethack - Bookings</title>
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-  </head>
-  <body class="h-[100vh] w-[100vw] bg-[url(./images/background.jpg)] bg-cover">
-    <header
-      class="bg-neutral-100 flex items-center justify-between w-full h-1/10"
-    >
-      <a href="../index.html">
-        <h1 id="logo" class="text-green-900 font-extrabold text-3xl">
-          Tickethack
-        </h1>
-      </a>
-      <div>
-        <a class="mx-5" href="./cart.html">Cart</a>
-        <a class="mx-5" href="./bookings.html">Bookings</a>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tickethack - Bookings</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body class="h-[100vh] w-[100vw] bg-[url(./images/background.jpg)] bg-cover">
+  <header class="bg-background flex items-center justify-between w-full h-1/10">
+    <a href="../index.html">
+      <h1 id="logo" class="text-ticket-green font-extrabold text-3xl">
+        Tickethack
+      </h1>
+    </a>
+    <div>
+      <a class="mx-5" href="cart.html">Cart</a>
+      <a class="mx-5" href="bookings.html">Bookings</a>
+    </div>
+  </header>
+  <div class="flex flex-col items-center justify-center h-9/10 w-full bg-grey">
+    <div class="w-2/3 h-4/9 flex-col justify-between bg-background text-center rounded-t-xl">
+      <h2>My bookings</h2>
+      <div id="bookings" class="h-2/3 flex flex-col justify-evenly items-center"></div>
+      <div class="flex flex-col justify-center items-center">
+        <hr class="h-px w-1/9" />
+        <p class="my-2 text-ticket-green">
+          Enjoy your travels with Tickethack!
+        </p>
       </div>
-    </header>
-  </body>
+    </div>
+  </div>
+  <!-- TEMPLATE -->
+  <template id="booking-tmpl">
+    <div class="w-19/20 h-1/9 grid grid-cols-6 bg-deep-grey rounded-xl">
+      <div class="col-start-1 col-span-2 text-left">
+        <span id="departure"></span>><span id="arrival"></span>
+      </div>
+      <div class="col-start-3 text-center" id="time"></div>
+      <div class="col-start-4 text-center"><span id="price"></span>€</div>
+      <div class="col-start-5 col-span-2 text-right">
+        Departure in <span id="time-left"></span>
+      </div>
+    </div>
+  </template>
+
+  <script src="../scripts/bookings.js"></script>
+</body>
+
 </html>
