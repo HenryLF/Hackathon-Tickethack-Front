@@ -17,13 +17,14 @@ function onSearchHandle() {
       ? document.getElementById(key).classList.remove("invalid-input")
       : document.getElementById(key).classList.add("invalid-input");
   }
-  let searchResult = fetch(BACK_URL + "/search", {
+  let searchResult = fetch(BACK_URL + "/trips", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(trajectQuery),
-  }).then((r) => r.json());
+  }).then(r=>r.json());
+  console.log(searchResult)
   renderSearchResult(searchResult);
 }
 
