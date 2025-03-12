@@ -53,11 +53,12 @@ function renderSearchResult(searchResult) {
 
 function addToCartHandle(id) {
   return async function () {
-    if(!isConnected()){
+    let userID = isConnected()
+    if(!userID){
       alert("Please log in.")
       return
     }
-    let serverResponse = await fetch(BACK_URL + "/trips/cart", {
+    let serverResponse = await fetch(BACK_URL + `/trips/cart/${userID}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
