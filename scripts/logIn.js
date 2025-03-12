@@ -1,4 +1,4 @@
-const BACK_URL = "http://localhost:3000";
+const BACK_URL = "https://hackathon-tickethack-back.vercel.app/";
 
 window.addEventListener("load", onPageLoad);
 function onPageLoad() {
