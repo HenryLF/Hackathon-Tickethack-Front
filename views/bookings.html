@@ -24,7 +24,7 @@
   </header>
   <!-- MAIN CONTAINER -->
   <div class="flex flex-col items-center justify-center h-9/10 w-full bg-grey">
-    <div class="w-2/3 h-4/9 flex-col justify-between bg-background text-center rounded-t-xl">
+    <div class="w-2/3 h-4/9 flex-col justify-between bg-background text-center rounded-xl">
       <h2>My bookings</h2>
       <div id="bookings" class="h-2/3 flex flex-col justify-evenly items-center"></div>
       <div class="flex flex-col justify-center items-center">
@@ -38,12 +38,12 @@
   <!-- TEMPLATE -->
   <template id="booking-tmpl">
     <div class="trip-box grid grid-cols-6 bg-deep-grey rounded-xl">
-      <div class="col-start-1 col-span-2 text-left">
+      <div class="col-start-1 col-span-2 text-left  my-auto ml-4">
         <span id="departure"></span>><span id="arrival"></span>
       </div>
-      <div class="col-start-3 text-center" id="time"></div>
-      <div class="col-start-4 text-center"><span id="price"></span>€</div>
-      <div class="col-start-5 col-span-2 text-right">
+      <div class="col-start-3 my-auto text-center" id="time"></div>
+      <div class="col-start-4 my-auto text-center"><span id="price"></span>€</div>
+      <div class="col-start-5 my-auto col-span-2 text-right mr-4">
         Departure in <span id="time-left"></span>
       </div>
     </div>
