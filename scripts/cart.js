@@ -16,6 +16,7 @@ async function getCartData() {
 
 function renderBookingContent(cartContent) {
   cartContainer.innerHTML = "";
+  let totalPrice = 0;
   for (let trip of cartContent) {
     let tripDIV = cartTMPL.cloneNode(true);
     tripDIV.querySelector("#departure").textContent = trip.departure;
@@ -30,7 +31,10 @@ function renderBookingContent(cartContent) {
       .querySelector("#delete")
       .addEventListener("click", deleteHandle(trip._id));
     cartContainer.appendChild(tripDIV);
+  
+    totalPrice += trip.price
   }
+  document.getElementById("cart-total").textContent = totalPrice
 }
 
 function deleteHandle(id) {
@@ -48,9 +52,9 @@ document
   .getElementById("purchase-btn")
   .addEventListener("click", purchaseHandle);
 async function purchaseHandle() {
-    let serverResponse = await fetch(BACK_URL + "/trips/purchase", {
-      method: "POST",
-    });
-    let jsonData = await serverResponse.json();
-    jsonData.result && window.location.assign("./bookings.html");
+  let serverResponse = await fetch(BACK_URL + "/trips/purchase", {
+    method: "POST",
+  });
+  let jsonData = await serverResponse.json();
+  jsonData.result && window.location.assign("./bookings.html");
 }

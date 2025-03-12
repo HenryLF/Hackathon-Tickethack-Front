@@ -25,16 +25,14 @@ function renderBookingContent(bookingContent) {
       `${time.getHours()}:${time.getMinutes().toString().padStart(2, "0")}`;
     //update timeleft every minutes
     tripDIV.querySelector("#time-left").textContent = getTimeLeft(time);
-    setInterval(() => {
-      tripDIV.querySelector("#time-left").textContent = getTimeLeft(time);
-    }, 60_000);
     tripDIV.querySelector("#price").textContent = trip.price;
     bookingContainer.appendChild(tripDIV);
   });
 }
 
 function getTimeLeft(date) {
-  let timeDelta = Math.floor((date.getTime() - Date.now()) / (1000 * 3600));
+  let timeDelta = Math.floor((date.getTime() - Date.now()) / (60_000));
+  console.log(timeDelta)
   console.log(date.getTime(), Date.now(), timeDelta);
   return timeDelta < 60
     ? `${timeDelta} minutes`
