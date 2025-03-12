@@ -1,5 +1,3 @@
-const BACK_URL = "http://localhost:3000";
-
 const cartTMPL = document.getElementById("cart-tmpl").content;
 const cartContainer = document.getElementById("cart");
 
@@ -31,10 +29,10 @@ function renderBookingContent(cartContent) {
       .querySelector("#delete")
       .addEventListener("click", deleteHandle(trip._id));
     cartContainer.appendChild(tripDIV);
-  
-    totalPrice += trip.price
+
+    totalPrice += trip.price;
   }
-  document.getElementById("cart-total").textContent = totalPrice
+  document.getElementById("cart-total").textContent = totalPrice;
 }
 
 function deleteHandle(id) {

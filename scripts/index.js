@@ -1,11 +1,9 @@
-const BACK_URL = "http://localhost:3000";
 const noTripFoundTMPL = document.getElementById("no-trip-tmpl").content;
 const tripTMPL = document.getElementById("trip-tmpl").content;
 
 const searchResultDIV = document.getElementById("search-results");
 
 document.getElementById("search-btn").addEventListener("click", onSearchHandle);
-
 async function onSearchHandle() {
   let trajectQuery = {
     departure: document.getElementById("departure").value,
@@ -41,7 +39,7 @@ function renderSearchResult(searchResult) {
     tripDIV.querySelector("#arrival").textContent = trip.arrival;
     tripDIV.querySelector("#price").textContent = trip.price;
     let time = new Date(trip.date);
-    console.log(time,trip)
+    console.log(time, trip);
     tripDIV.querySelector("#time").textContent = `${time.getHours()}:${time
       .getMinutes()
       .toString()
@@ -55,6 +53,10 @@ function renderSearchResult(searchResult) {
 
 function addToCartHandle(id) {
   return async function () {
+    if(!isConnected()){
+      alert("Please log in.")
+      return
+    }
     let serverResponse = await fetch(BACK_URL + "/trips/cart", {
       method: "POST",
       headers: {

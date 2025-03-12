@@ -424,6 +424,7 @@
   background-color: var(--color-ticket-green);
   color: var(--color-background);
   border-radius: var(--radius-xs);
+  padding: 0.5rem;
 }
 .trip-box {
   height: 52px;
