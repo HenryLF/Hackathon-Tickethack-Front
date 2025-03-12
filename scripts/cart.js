@@ -9,7 +9,7 @@ async function getCartData() {
     alert("Please log in.");
     return;
   }
-  let serverResponse = await fetch("https://hackathon-.tickethack-back.vercel.app" + `/trips/cart/${userID}`, {
+  let serverResponse = await fetch("https://hackathon-tickethack-back.vercel.app" + `/trips/cart/${userID}`, {
     method: "GET", //just to be suuuuure
   });
   let jsonData = await serverResponse.json();
@@ -47,7 +47,7 @@ function deleteHandle(id) {
       alert("Please log in.");
       return;
     }
-    let serverResponse = await fetch("https://hackathon-.tickethack-back.vercel.app" + `/trips/cart/${userID}/${id}`, {
+    let serverResponse = await fetch("https://hackathon-tickethack-back.vercel.app" + `/trips/cart/${userID}/${id}`, {
       method: "DELETE",
     });
     let jsonData = await serverResponse.json();
@@ -65,7 +65,7 @@ async function purchaseHandle() {
     alert("Please log in.");
     return;
   }
-  let serverResponse = await fetch("https://hackathon-.tickethack-back.vercel.app" + `/trips/purchase/${userID}`, {
+  let serverResponse = await fetch("https://hackathon-tickethack-back.vercel.app" + `/trips/purchase/${userID}`, {
     method: "POST",
   });
   let jsonData = await serverResponse.json();
