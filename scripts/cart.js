@@ -6,92 +6,51 @@ const cartContainer = document.getElementById("cart");
 window.addEventListener("load", getCartData);
 
 async function getCartData() {
-  try {
-    let serverResponse = await fetch(BACK_URL + "/cart", {
-      method: "GET", //just to be suuuuure
-    });
-    let jsonData = await serverResponse.json();
-    jsonData.result && renderBookingContent(jsonData.data);
-  } catch (error) {
-    renderBookingContent(testData);
-  }
+  let serverResponse = await fetch(BACK_URL + "/trips/cart", {
+    method: "GET", //just to be suuuuure
+  });
+  let jsonData = await serverResponse.json();
+  console.log(jsonData);
+  jsonData.result && renderBookingContent(jsonData.data);
 }
 
 function renderBookingContent(cartContent) {
   cartContainer.innerHTML = "";
-  cartContent.forEach((trip) => {
+  for (let trip of cartContent) {
     let tripDIV = cartTMPL.cloneNode(true);
     tripDIV.querySelector("#departure").textContent = trip.departure;
     tripDIV.querySelector("#arrival").textContent = trip.arrival;
-    let time = new Date(trip.date.$date);
+    let time = new Date(trip.date);
     tripDIV.querySelector("#time").textContent = `${time.getHours()}:${time
       .getMinutes()
       .toString()
       .padStart(2, "0")}`;
     tripDIV.querySelector("#price").textContent = trip.price;
-    tripDIV.querySelector("#delete").addEventListener("click", deleteHandle);
-
-    //for now, and before using MongoDB _id for communication i'll "link" the cart data to the div
-    //(i feel dirty)
-    tripDIV.tripData = trip;
-    //later maybe we'll do something like cartDIV.id = trip._id
-
+    tripDIV
+      .querySelector("#delete")
+      .addEventListener("click", deleteHandle(trip._id));
     cartContainer.appendChild(tripDIV);
-  });
+  }
 }
 
-async function deleteHandle() {
-  try {
-    let serverResponse = await fetch(BACK_URL + "/cart", {
+function deleteHandle(id) {
+  return async function () {
+    let serverResponse = await fetch(BACK_URL + `/trips/cart/${id}`, {
       method: "DELETE",
-      body: this.parentNode.tripData,
     });
     let jsonData = await serverResponse.json();
-    jsonData.result && this.parentNode.remove();
-  } catch (error) {
-    this.parentNode.remove();
-  }
+    console.log(jsonData);
+    jsonData.result && this.parentNode.parentNode.remove();
+  };
 }
 
 document
   .getElementById("purchase-btn")
   .addEventListener("click", purchaseHandle);
 async function purchaseHandle() {
-  try {
     let serverResponse = await fetch(BACK_URL + "/trips/purchase", {
       method: "POST",
     });
-    //En vrai la maintenant je me rend compte qu'on a pas forcement besoin d"envoyer des données au back.
     let jsonData = await serverResponse.json();
-    jsonData.result && window.location.assign("./bookings");
-  } catch (error) {
-    window.location.assign("./bookings.html");
-  }
+    jsonData.result && window.location.assign("./bookings.html");
 }
-
-const testData = [
-  {
-    departure: "Pau",
-    arrival: "Majorque",
-    date: { $date: "2025-03-11T09:53:52.428Z" },
-    price: 99,
-  },
-  {
-    departure: "Test",
-    arrival: "Tset",
-    date: { $date: "2025-03-11T09:57:45.677Z" },
-    price: 146,
-  },
-  {
-    departure: "Boud1",
-    arrival: "0pom",
-    date: { $date: "2025-03-11T10:19:36.198Z" },
-    price: 91,
-  },
-  {
-    departure: "TM",
-    arrival: "LP",
-    date: { $date: "2025-03-11T10:36:07.251Z" },
-    price: 143,
-  },
-];
