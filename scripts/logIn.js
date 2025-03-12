@@ -5,7 +5,7 @@ function onPageLoad() {
   let userID = localStorage.getItem("userID");
   userID &&
     (document.getElementById("log-in").textContent =
-      `You are user  n°${userID.slice(16)}`);
+      `You are user  n°${userID.slice(20)}`);
 }
 
 document.getElementById("log-in").addEventListener("click", logInHandle);
@@ -18,5 +18,5 @@ async function logInHandle() {
 }
 
 function isConnected() {
-  return localStorage.key("userID");
+  return localStorage.getItem("userID");
 }

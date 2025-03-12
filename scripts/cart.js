@@ -4,7 +4,12 @@ const cartContainer = document.getElementById("cart");
 window.addEventListener("load", getCartData);
 
 async function getCartData() {
-  let serverResponse = await fetch(BACK_URL + "/trips/cart", {
+  let userID = isConnected();
+  if (!userID) {
+    alert("Please log in.");
+    return;
+  }
+  let serverResponse = await fetch(BACK_URL + `/trips/cart/${userID}`, {
     method: "GET", //just to be suuuuure
   });
   let jsonData = await serverResponse.json();
@@ -37,7 +42,12 @@ function renderBookingContent(cartContent) {
 
 function deleteHandle(id) {
   return async function () {
-    let serverResponse = await fetch(BACK_URL + `/trips/cart/${id}`, {
+    let userID = isConnected();
+    if (!userID) {
+      alert("Please log in.");
+      return;
+    }
+    let serverResponse = await fetch(BACK_URL + `/trips/cart/${userID}/${id}`, {
       method: "DELETE",
     });
     let jsonData = await serverResponse.json();
@@ -50,7 +60,12 @@ document
   .getElementById("purchase-btn")
   .addEventListener("click", purchaseHandle);
 async function purchaseHandle() {
-  let serverResponse = await fetch(BACK_URL + "/trips/purchase", {
+  let userID = isConnected();
+  if (!userID) {
+    alert("Please log in.");
+    return;
+  }
+  let serverResponse = await fetch(BACK_URL + `/trips/purchase/${userID}`, {
     method: "POST",
   });
   let jsonData = await serverResponse.json();
