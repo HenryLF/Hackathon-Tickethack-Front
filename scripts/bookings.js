@@ -1,5 +1,3 @@
-const BACK_URL = "http://localhost:3000";
-
 const bookingTMPL = document.getElementById("booking-tmpl").content;
 const bookingContainer = document.getElementById("bookings");
 
@@ -31,8 +29,8 @@ function renderBookingContent(bookingContent) {
 }
 
 function getTimeLeft(date) {
-  let timeDelta = Math.floor((date.getTime() - Date.now()) / (60_000));
-  console.log(timeDelta)
+  let timeDelta = Math.floor((date.getTime() - Date.now()) / 60_000);
+  console.log(timeDelta);
   console.log(date.getTime(), Date.now(), timeDelta);
   return timeDelta < 60
     ? `${timeDelta} minutes`
