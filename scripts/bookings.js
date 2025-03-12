@@ -8,7 +8,7 @@ async function getBookingData() {
     alert("Please log in.");
     return;
   }
-  let serverResponse = await fetch(BACK_URL + `/trips/bookings/${userID}`, {
+  let serverResponse = await fetch("https://hackathon-tickethack-back.vercel.app" + `/trips/bookings/${userID}`, {
     method: "GET", //just to be suuuuure
   });
   let jsonData = await serverResponse.json();
