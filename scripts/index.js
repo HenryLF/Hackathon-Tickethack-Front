@@ -16,7 +16,7 @@ async function onSearchHandle() {
       : document.getElementById(key).classList.add("invalid-input");
   }
 
-  let serverResponse = await fetch(BACK_URL + "/trips", {
+  let serverResponse = await fetch("https://hackathon-.tickethack-back.vercel.app" + "/trips", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -58,7 +58,7 @@ function addToCartHandle(id) {
       alert("Please log in.")
       return
     }
-    let serverResponse = await fetch(BACK_URL + `/trips/cart/${userID}`, {
+    let serverResponse = await fetch("https://hackathon-.tickethack-back.vercel.app" + `/trips/cart/${userID}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
